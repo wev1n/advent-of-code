@@ -1,11 +1,27 @@
-import { readFileSync } from "fs";
+import fs from "fs";
 
-let inputs = readFileSync("./input.txt", "utf-8")
-  .split("\r\n")
-  .filter((x) => !!x);
+// ------------P1-----------------
+function p1(file) {
+  const input = fs
+    .readFileSync(file, "utf-8")
+    .trim()
+    .replace(/\r/g, "")
+    .split("\n");
 
-// ------------------------------------------
+  return input;
+}
 
-inputs.forEach((word) => {});
+console.log(`P1: ${p1("./example.txt")}`);
 
-console.log(inputs);
+// ------------P2-----------------
+function p2(file) {
+  const input = fs
+    .readFileSync(file, "utf-8")
+    .trim()
+    .replace(/\r/g, "")
+    .split("\n");
+
+  return input;
+}
+
+console.log(`P2: ${p2("./example.txt")}`);
