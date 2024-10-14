@@ -1,16 +1,21 @@
 {
   "name": "2023",
   "version": "1.0.0",
-  "description": "",
-  "type": "module",
+  "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node run.ts",
+    "build": "tsc",
+    "run": "node dist/day1.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "^20.12.12"
-  }
+    "@types/node": "^20.16.11",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
+  },
+  "description": ""
 }
