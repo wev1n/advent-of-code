@@ -6,7 +6,9 @@
     "rootDir": "./src", // Root directory for your TypeScript files.
     "strict": true, // Enable strict type-checking.
     "esModuleInterop": true, // Allows compatibility with CommonJS and ES Modules.
-    "skipLibCheck": true // Skip type checks for library files.
+    "skipLibCheck": true, // Skip type checks for library files.
+    "noImplicitAny": false, // Allow implicit `any`
+    "strictNullChecks": false // Don't enforce strict null checking
   },
   "include": ["src/**/*"] // Include all files in the 'src' directory.
 }
