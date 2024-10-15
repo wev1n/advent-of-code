@@ -1,27 +1,25 @@
 import * as fs from "fs";
 
+function readInputFile(file: string): string[] {
+  return fs.readFileSync(file, "utf-8").trim().replace(/\r/g, "").split("\n");
+}
+
 // ------------P1-----------------
-function p1(file: string): string[] {
-  const input = fs
-    .readFileSync(file, "utf-8")
-    .trim()
-    .replace(/\r/g, "")
-    .split("\n");
+function p1(file: string): number {
+  const lines = readInputFile(file);
+  let floor = 0;
 
-  return input;
+  lines.forEach((line) => {
+    for (const char of line) {
+      if (char === "(") {
+        floor += 1;
+      } else if (char === ")") {
+        floor -= 1;
+      }
+    }
+  });
+
+  return floor;
 }
 
-console.log(`P1: ${p1("./example.txt")}`);
-
-// ------------P2-----------------
-function p2(file: string): string[] {
-  const input = fs
-    .readFileSync(file, "utf-8")
-    .trim()
-    .replace(/\r/g, "")
-    .split("\n");
-
-  return input;
-}
-
-console.log(`P2: ${p2("./example.txt")}`);
+console.log(`P1: ${p1("./src/2015/day-1/input.txt")}`);
