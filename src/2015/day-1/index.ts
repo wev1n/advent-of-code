@@ -23,3 +23,29 @@ function p1(file: string): number {
 }
 
 console.log(`P1: ${p1("./src/2015/day-1/input.txt")}`);
+
+// ------------P2-----------------
+function p2(file: string): number {
+  const lines = readInputFile(file);
+
+  let floor = 0;
+  let position = 0;
+
+  for (const line of lines) {
+    for (const char of line) {
+      position += 1;
+
+      if (char === "(") {
+        floor += 1;
+      } else if (char === ")") {
+        floor -= 1;
+      }
+
+      if (floor < 0) {
+        return position;
+      }
+    }
+  }
+}
+
+console.log(`P2: ${p2("./src/2015/day-1/input.txt")}`);
