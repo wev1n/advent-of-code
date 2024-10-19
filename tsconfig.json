@@ -8,7 +8,8 @@
     "esModuleInterop": true, // Allows compatibility with CommonJS and ES Modules.
     "skipLibCheck": true, // Skip type checks for library files.
     "noImplicitAny": false, // Allow implicit `any`
-    "strictNullChecks": false // Don't enforce strict null checking
+    "strictNullChecks": false, // Don't enforce strict null checking
+    "types": ["node"] // Type declaration files to be included in compilation.
   },
   "include": ["src/**/*"] // Include all files in the 'src' directory.
 }
