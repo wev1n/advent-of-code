@@ -5,12 +5,23 @@ function readInputFile(file: string): string[] {
 }
 
 // ------------Helpers------------
-function checkIfNaughtyOrNice(input: string): string {
+function checkIfNaughtyOrNiceP1(input: string): string {
   const vowelCount = (input.match(/[aeiou]/gi) || []).length;
   const hasDoubleLetter = /(.)\1/.test(input);
   const hasForbiddenLetter = /(ab|cd|pq|xy)/.test(input);
 
   if (vowelCount >= 3 && hasDoubleLetter && !hasForbiddenLetter) {
+    return "nice";
+  } else {
+    return "naughty";
+  }
+}
+
+function checkIfNaughtyOrNiceP2(input: string): string {
+  const hasPairTwice = /(..).*\1/.test(input);
+  const hasRepeatingLetterWithOneBetween = /(.).\1/.test(input);
+
+  if (hasPairTwice && hasRepeatingLetterWithOneBetween) {
     return "nice";
   } else {
     return "naughty";
@@ -23,7 +34,7 @@ function p1(file: string): number {
   let niceStrings = 0;
 
   lines.forEach((line) => {
-    if (checkIfNaughtyOrNice(line) === "nice") {
+    if (checkIfNaughtyOrNiceP1(line) === "nice") {
       niceStrings++;
     }
   });
@@ -32,3 +43,19 @@ function p1(file: string): number {
 }
 
 console.log(`P1: ${p1("./src/2015/day-5/input.txt")}`);
+
+// ------------P2-----------------
+function p2(file: string): number {
+  const lines = readInputFile(file);
+  let niceStrings = 0;
+
+  lines.forEach((line) => {
+    if (checkIfNaughtyOrNiceP2(line) === "nice") {
+      niceStrings++;
+    }
+  });
+
+  return niceStrings;
+}
+
+console.log(`P2: ${p2("./src/2015/day-5/input.txt")}`);
