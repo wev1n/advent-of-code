@@ -59,3 +59,26 @@ function p1(file: string): number {
 }
 
 console.log(`P1: ${p1("./src/2015/day-7/input.txt")}`);
+
+// ------------P2-----------------
+function p2(file: string): number {
+  const lines = readInputFile(file);
+
+  const circuit: Circuit = {};
+  for (const line of lines) {
+    const [instruction, result] = line.split(" -> ");
+    circuit[result] = instruction;
+  }
+
+  const cachePart1: Cache = {};
+  const signalA = evaluate("a", circuit, cachePart1);
+
+  circuit["b"] = signalA.toString();
+
+  const cachePart2: Cache = {};
+  const newSignalA = evaluate("a", circuit, cachePart2);
+
+  return newSignalA;
+}
+
+console.log(`P2: ${p2("./src/2015/day-7/input.txt")}`);
