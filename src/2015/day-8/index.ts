@@ -32,6 +32,20 @@ function getInMemoryLength(input: string): number {
   return inMemoryLength;
 }
 
+function getEncodedLength(input: string): number {
+  let encodedLength = 2;
+
+  for (const char of input) {
+    if (char === "\\" || char === '"') {
+      encodedLength += 2;
+    } else {
+      encodedLength += 1;
+    }
+  }
+
+  return encodedLength;
+}
+
 // ------------P1-----------------
 function p1(file: string): number {
   const lines = readInputFile(file);
@@ -48,3 +62,20 @@ function p1(file: string): number {
 }
 
 console.log(`P1: ${p1("./src/2015/day-8/input.txt")}`);
+
+// ------------P2-----------------
+function p2(file: string): number {
+  const lines = readInputFile(file);
+
+  let originalCodeChars = 0;
+  let encodedChars = 0;
+
+  for (const line of lines) {
+    originalCodeChars += line.length;
+    encodedChars += getEncodedLength(line);
+  }
+
+  return encodedChars - originalCodeChars;
+}
+
+console.log(`P2: ${p2("./src/2015/day-8/input.txt")}`);
