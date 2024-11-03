@@ -77,3 +77,23 @@ function p1(file: string): number {
 }
 
 console.log(`P1: ${p1("./src/2015/day-9/input.txt")}`);
+
+// ------------P2-----------------
+function p2(file: string): number {
+  const lines = readInputFile(file);
+  const { distances, locations } = parseDistances(lines);
+  const routes = permute(locations);
+
+  let maxDistance = 0;
+
+  routes.forEach((route) => {
+    const distance = calculateDistance(route, distances);
+    if (distance !== null && distance > maxDistance) {
+      maxDistance = distance;
+    }
+  });
+
+  return maxDistance;
+}
+
+console.log(`P2: ${p2("./src/2015/day-9/input.txt")}`);
