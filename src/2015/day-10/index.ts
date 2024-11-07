@@ -36,3 +36,16 @@ function p1(file: string, iterations: number): number {
 }
 
 console.log(`P1: ${p1("./src/2015/day-10/input.txt", 40)}`);
+
+// ------------P2-----------------
+function p2(file: string, iterations: number): number {
+  let input = readInputFile(file);
+
+  for (let i = 0; i < iterations; i++) {
+    input = lookAndSay(input);
+  }
+
+  return input.length;
+}
+
+console.log(`P2: ${p2("./src/2015/day-10/input.txt", 50)}`);
