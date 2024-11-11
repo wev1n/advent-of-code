@@ -72,5 +72,5 @@ function p2(file: string): string {
   return findNextPassword(input);
 }
 
-// input: hepxxyzz
+// input: heqaabcc
 console.log(`P2: ${p2("./src/2015/day-11/input.txt")}`);
