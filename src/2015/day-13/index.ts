@@ -74,6 +74,16 @@ function findOptimalArrangement(
   return maxHappiness;
 }
 
+function addYourself(happinessMap: Map<string, Map<string, number>>) {
+  const people = Array.from(happinessMap.keys());
+  happinessMap.set("Yourself", new Map());
+
+  for (const person of people) {
+    happinessMap.get(person)?.set("Yourself", 0);
+    happinessMap.get("Yourself")?.set(person, 0);
+  }
+}
+
 // ------------P1-----------------
 function p1(file: string): number {
   const lines = readInputFile(file);
@@ -82,3 +92,14 @@ function p1(file: string): number {
 }
 
 console.log(`P1: ${p1("./src/2015/day-13/input.txt")}`);
+
+// ------------P2-----------------
+function p2(file: string): number {
+  const lines = readInputFile(file);
+  const happinessMap = parseHappinessData(lines);
+  addYourself(happinessMap);
+
+  return findOptimalArrangement(happinessMap);
+}
+
+console.log(`P2: ${p2("./src/2015/day-13/input.txt")}`);
