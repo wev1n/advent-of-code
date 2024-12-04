@@ -37,6 +37,37 @@ function calculateWinningDistance(
   return maxDistance;
 }
 
+function calculateWinningPoints(
+  reindeerData: [number, number, number][],
+  raceDuration: number
+): number {
+  const numReindeer = reindeerData.length;
+  const distances = Array(numReindeer).fill(0);
+  const points = Array(numReindeer).fill(0);
+
+  for (let second = 1; second <= raceDuration; second++) {
+    for (let i = 0; i < numReindeer; i++) {
+      const [speed, flyTime, restTime] = reindeerData[i];
+      const cycleTime = flyTime + restTime;
+      const timeInCurrentCycle = second % cycleTime;
+
+      if (timeInCurrentCycle <= flyTime && timeInCurrentCycle !== 0) {
+        distances[i] += speed;
+      }
+    }
+
+    const maxDistance = Math.max(...distances);
+
+    for (let i = 0; i < numReindeer; i++) {
+      if (distances[i] === maxDistance) {
+        points[i]++;
+      }
+    }
+  }
+
+  return Math.max(...points);
+}
+
 // ------------P1-----------------
 function p1(file: string): number {
   const lines = readInputFile(file);
@@ -48,3 +79,15 @@ function p1(file: string): number {
 }
 
 console.log(`P1: ${p1("./src/2015/day-14/input.txt")}`);
+
+// ------------P2-----------------
+function p2(file: string): number {
+  const lines = readInputFile(file);
+
+  const reindeerData = parseReindeerData(lines);
+  const raceDuration = 2503;
+
+  return calculateWinningPoints(reindeerData, raceDuration);
+}
+
+console.log(`P2: ${p2("./src/2015/day-14/input.txt")}`);
