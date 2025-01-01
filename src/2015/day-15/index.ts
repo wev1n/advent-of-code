@@ -93,3 +93,28 @@ function p1(file: string): number {
 }
 
 console.log(`P1: ${p1("./src/2015/day-15/input.txt")}`);
+
+// ------------P2-----------------
+function p2(file: string): number {
+  const lines = readInputFile(file);
+  const ingredients = lines.map(parseIngredients);
+  const combinations = generateCombinations(ingredients.length, 100);
+
+  let maxScore = 0;
+
+  combinations.forEach((amounts) => {
+    let totalCalories = 0;
+    for (let i = 0; i < ingredients.length; i++) {
+      totalCalories += ingredients[i].calories * amounts[i];
+    }
+
+    if (totalCalories === 500) {
+      const score = calculateScore(ingredients, amounts);
+      maxScore = Math.max(maxScore, score);
+    }
+  });
+
+  return maxScore;
+}
+
+console.log(`P2: ${p2("./src/2015/day-15/input.txt")}`);
