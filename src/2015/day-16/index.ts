@@ -40,7 +40,10 @@ function parseLine(line: string): AuntSue {
   return { id, attributes };
 }
 
-function isMatchingAuntSue(aunt: AuntSue, tickerTape: Record<string, number>) {
+function isMatchingAuntSue(
+  aunt: AuntSue,
+  tickerTape: Record<string, number>
+): boolean {
   for (const key in aunt.attributes) {
     if (
       tickerTape[key] !== undefined &&
